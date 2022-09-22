@@ -11,8 +11,7 @@ module ula ();
     xor8 x8 (sx, a, b);
     not8 t8 (st, a);
 
-    mux4 m4 (sa, ss, sn, so, sel[1:0], out);
-    /* mux8 m8 (sa, ss, sn, so, sx, st, 8'b0, 8'b0, sel, out); */
+    mux8 m8 (sa, ss, sn, so, sx, st, 8'b0, 8'b0, sel, out);
 
     initial begin
         $dumpfile("dump.vcd");
@@ -20,22 +19,38 @@ module ula ();
 
         a = 8'd5; b = 8'd3; sel = 3'b000;
         #10;
+        $display("A + B");
         $display("sel: %b, a: %b, b: %b, out: %b", sel, a, b, out);
-        $display("sel: %b, a: %d, b: %d, out: %d", sel, a, b, out);
+        $display("sel: %d, a: %d, b: %d, out: %d\n", sel, a, b, out);
 
         a = 8'd5; b = 8'd3; sel = 3'b001;
         #10;
+        $display("A - B");
         $display("sel: %b, a: %b, b: %b, out: %b", sel, a, b, out);
-        $display("sel: %b, a: %d, b: %d, out: %d", sel, a, b, out);
+        $display("sel: %d, a: %d, b: %d, out: %d\n", sel, a, b, out);
 
         a = 8'd5; b = 8'd3; sel = 3'b010;
         #10;
+        $display("A & B");
         $display("sel: %b, a: %b, b: %b, out: %b", sel, a, b, out);
-        $display("sel: %b, a: %d, b: %d, out: %d", sel, a, b, out);
+        $display("sel: %d, a: %d, b: %d, out: %d\n", sel, a, b, out);
 
         a = 8'd5; b = 8'd3; sel = 3'b011;
         #10;
+        $display("A | B");
         $display("sel: %b, a: %b, b: %b, out: %b", sel, a, b, out);
-        $display("sel: %b, a: %d, b: %d, out: %d", sel, a, b, out);
+        $display("sel: %d, a: %d, b: %d, out: %d\n", sel, a, b, out);
+
+        a = 8'd5; b = 8'd3; sel = 3'b100;
+        #10;
+        $display("A ^ B");
+        $display("sel: %b, a: %b, b: %b, out: %b", sel, a, b, out);
+        $display("sel: %d, a: %d, b: %d, out: %d\n", sel, a, b, out);
+
+        a = 8'd5; b = 8'd3; sel = 3'b101;
+        #10;
+        $display("!A");
+        $display("sel: %b, a: %b, out: %b", sel, a, out);
+        $display("sel: %d, a: %d, out: %d", sel, a, out);
     end
 endmodule
